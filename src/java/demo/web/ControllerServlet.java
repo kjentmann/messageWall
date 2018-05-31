@@ -47,22 +47,20 @@ public class ControllerServlet extends HttpServlet {
         if (serv_path.equals("/login.do")) {
         String usr = request.getParameter("user");
         String pwd = request.getParameter("password");
-        //MessageWall loginUsr = getRemoteLogin();
-        
-        mw.connect(usr, pwd);
-        UserAccess user = new UserAccess_Impl(mw, usr);
+        UserAccess user = mw.connect(usr, pwd);
+        if (user !=null){
         session.setAttribute("useraccess", user);
         return("/wallview");
         } 
-        
+        else{
+            return("/authProblem.html");
+        }
+        }
         else if (serv_path.equals("/put.do")) {
            connection.put(request.getParameter("msg"));
-            
             return "/wallview";
         } 
-        // do the delete method as well
         else if (serv_path.equals("/refresh.do")) {
-         
             return "/wallview";
         } 
          else if (serv_path.equals("/delete.do")) {
@@ -70,12 +68,10 @@ public class ControllerServlet extends HttpServlet {
             user.delete(Integer.parseInt((request.getParameter("index"))));
             return "/wallview";
         } 
-        
         else if (serv_path.equals("/logout.do")) {
             session.removeAttribute("useraccess");
             return "/goodbye.html";
         } 
-        
         else {
             return "/error-bad-action.html";
         }

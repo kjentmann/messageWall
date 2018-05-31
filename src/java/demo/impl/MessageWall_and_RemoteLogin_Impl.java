@@ -4,29 +4,36 @@ import demo.spec.MessageWall;
 import demo.spec.RemoteLogin;
 import demo.spec.UserAccess;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MessageWall_and_RemoteLogin_Impl implements RemoteLogin, MessageWall {
-
     private List<Message> messages;
+    private Map<String,String> users;
     
-  
     public MessageWall_and_RemoteLogin_Impl(){
        this.messages = new ArrayList<Message>(); 
-       this.put("empty", "none");
+       this.users = new HashMap<String,String>();
+       users.put("mads","student");       
+       users.put("etseitb","upc");
+       users.put("donald","brump");
+       users.put("bill","hilton");
+       users.put("christofer","colombus");
+       //werySecureImplementation.com
     }
     
     @Override
     public UserAccess connect(String usr, String passwd) {
-           UserAccess user = new UserAccess_Impl(this,usr);
-           if (passwd == "password"){
-           return user;
-           }
-           else{
-                return user;
-            }
-    }
-
+        System.out.println("usr "+ usr+ " pwd "+passwd);
+        if ((users.containsKey(usr)) && (users.get(usr).equals(passwd))){
+        UserAccess user = new UserAccess_Impl(this,usr);
+       return user;
+       }
+       else{
+            return null;
+        }
+}
     @Override
     public void put(String user, String msg) {
        this.messages.add(new Message_Impl(user, msg));
@@ -50,11 +57,9 @@ public class MessageWall_and_RemoteLogin_Impl implements RemoteLogin, MessageWal
        return messages.get(messages.size()-1);
     }
     }       
-
     @Override
     public int getNumber() {
-        return 1337;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return messages.size();
     }
 
     @Override

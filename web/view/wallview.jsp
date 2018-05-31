@@ -13,8 +13,6 @@
 <%
    request.getSession();
    UserAccess user= (UserAccess) session.getAttribute("useraccess");
-   
-
 %>
 
 <script>
@@ -24,7 +22,8 @@
     }
 </script>
 
-<body>
+<body
+    BGCOLOR="grey">
     
     <h3>user: <em><%=user.getUser()%></em>
         <a href=logout.do>[Close session]</a></h3>
@@ -46,22 +45,15 @@
         </td>
 
         <%
-Integer index = 0;
+        Integer index = 0;
         for ( Message msg : user.getAllMessages()){
-            
-        
-
         %>
-
         <tr> <font size="2" face="Verdana">
-
         <td width="14%" valign="center" align="middle">
                         <%=msg.getContent()%>
         </td>
-
         <td width="14%" valign="center" align="middle">
                         <%=msg.getOwner() %>
-
         </td>
 
         <td width="14%" valign="center" align="middle">
@@ -79,21 +71,13 @@ Integer index = 0;
     </tr>
 
     <% index ++;} %>
-    
-
 </table>
-
 </br>
-
 <HR WIDTH="100%" SIZE="2">
-
 <form action="put.do" method=POST>
     New message:<input type=text name=msg size=10>
     <input type=submit value="Send message"></form>
-
 <HR WIDTH="100%" SIZE="2">
-
 <form action="refresh.do" method=POST>
     <input type=submit value="Refresh wall view message" name="refresh_button"></form>
-
 </body>

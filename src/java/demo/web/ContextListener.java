@@ -5,11 +5,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-/**
- * Web application lifecycle listener.
- *
- * @author juanluis
- */
+
 public class ContextListener implements ServletContextListener {
 
     @Override
