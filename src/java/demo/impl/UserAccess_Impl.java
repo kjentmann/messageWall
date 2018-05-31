@@ -19,43 +19,31 @@ public class UserAccess_Impl implements UserAccess {
     @Override
     public String getUser() {
         return user;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Message getLast() {
-        
       return messageWall.getLast();
-        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public int getNumber() {
         return messageWall.getNumber();
-        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void put(String msg) {
         messageWall.put(user,msg);
-
-//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean delete(int index) {
        messageWall.delete(this.user, index);
      return true;  
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<Message> getAllMessages() {
       return  messageWall.getAllMessages();
-// throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    
 }

@@ -7,27 +7,29 @@
     <meta http-equiv="Cache-Control" CONTENT="no-cache">
     <meta http-equiv="Pragma" CONTENT="no-cache">
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-    <title>Message Wall</title>
+    <title>Message Wall!</title>
 </head>
 
 <%
-    
+   request.getSession();
+   UserAccess user= (UserAccess) session.getAttribute("useraccess");
+   
 
 %>
 
 <script>
-    
-    
-    
-    
+      setInterval(my_function, 10000);
+    function my_function() {
+        document.getElementsByName('refresh_button')[0].click();
+    }
 </script>
 
 <body>
     
-    <h3>user: <em><%=%></em>
+    <h3>user: <em><%=user.getUser()%></em>
         <a href=logout.do>[Close session]</a></h3>
 
-    <h2> <%=%> Messages shown:</h2>
+    <h2> <%=user.getNumber()%> Messages shown:</h2>
 
     <table width="50%" border="1" bordercolordark="#000000" bordercolorlight="#FFFFFF" cellpadding="3" cellspacing="0">
 
@@ -44,26 +46,29 @@
         </td>
 
         <%
-
+Integer index = 0;
+        for ( Message msg : user.getAllMessages()){
             
+        
 
         %>
 
         <tr> <font size="2" face="Verdana">
 
         <td width="14%" valign="center" align="middle">
-            <%=%>
+                        <%=msg.getContent()%>
         </td>
 
         <td width="14%" valign="center" align="middle">
-            <%=%>
+                        <%=msg.getOwner() %>
+
         </td>
 
         <td width="14%" valign="center" align="middle">
             <form action="delete.do" method="post">
                 <input type="hidden"
                        name="index"
-                       value="<%=%>">
+                       value="<%=index %>">
                 <input type="submit"
                        name="delete"
                        value="delete">
@@ -73,7 +78,8 @@
         </font> 
     </tr>
 
-    <% %>
+    <% index ++;} %>
+    
 
 </table>
 
@@ -88,6 +94,6 @@
 <HR WIDTH="100%" SIZE="2">
 
 <form action="refresh.do" method=POST>
-    <input type=submit value="Refresh wall view message"></form>
+    <input type=submit value="Refresh wall view message" name="refresh_button"></form>
 
 </body>

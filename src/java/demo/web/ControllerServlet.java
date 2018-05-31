@@ -52,7 +52,6 @@ public class ControllerServlet extends HttpServlet {
         mw.connect(usr, pwd);
         UserAccess user = new UserAccess_Impl(mw, usr);
         session.setAttribute("useraccess", user);
-       
         return("/wallview");
         } 
         
@@ -64,6 +63,11 @@ public class ControllerServlet extends HttpServlet {
         // do the delete method as well
         else if (serv_path.equals("/refresh.do")) {
          
+            return "/wallview";
+        } 
+         else if (serv_path.equals("/delete.do")) {
+             UserAccess user =(UserAccess) session.getAttribute("useraccess");
+            user.delete(Integer.parseInt((request.getParameter("index"))));
             return "/wallview";
         } 
         

@@ -24,14 +24,12 @@ public class MessageWall_and_RemoteLogin_Impl implements RemoteLogin, MessageWal
            }
            else{
                 return user;
-                //throw new UnsupportedOperationException("Error, wrong passowrd"); 
             }
     }
 
     @Override
     public void put(String user, String msg) {
        this.messages.add(new Message_Impl(user, msg));
-        //throw new UnsupportedOperationException("Numbers Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -55,7 +53,8 @@ public class MessageWall_and_RemoteLogin_Impl implements RemoteLogin, MessageWal
 
     @Override
     public int getNumber() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 1337;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

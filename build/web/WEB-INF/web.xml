@@ -18,8 +18,10 @@
 
     <servlet>
         <servlet-name> wallview </servlet-name>
-        <servlet-class> demo.web.WallViewServlet </servlet-class>
+            <jsp-file>/view/wallview.jsp</jsp-file>
+        <!-- <servlet-class> demo.web.WallViewServlet </servlet-class> -->
     </servlet>
+
 
     <servlet-mapping>
         <servlet-name> wallview </servlet-name>
